@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\PhanNguyen_DemoAPI.props" />
+</Project>
