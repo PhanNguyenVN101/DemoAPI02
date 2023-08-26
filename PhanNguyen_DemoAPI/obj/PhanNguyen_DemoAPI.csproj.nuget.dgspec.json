@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MonHoc\\AmazingTech_TT_BE\\GitHub\\DemoAPI01\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj": {}
+    "C:\\Users\\tandat\\OneDrive\\Desktop\\DemoAPI02\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj": {}
   },
   "projects": {
-    "C:\\MonHoc\\AmazingTech_TT_BE\\GitHub\\DemoAPI01\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj": {
+    "C:\\Users\\tandat\\OneDrive\\Desktop\\DemoAPI02\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MonHoc\\AmazingTech_TT_BE\\GitHub\\DemoAPI01\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj",
+        "projectUniqueName": "C:\\Users\\tandat\\OneDrive\\Desktop\\DemoAPI02\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj",
         "projectName": "PhanNguyen_DemoAPI",
-        "projectPath": "C:\\MonHoc\\AmazingTech_TT_BE\\GitHub\\DemoAPI01\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj",
+        "projectPath": "C:\\Users\\tandat\\OneDrive\\Desktop\\DemoAPI02\\PhanNguyen_DemoAPI\\PhanNguyen_DemoAPI.csproj",
         "packagesPath": "C:\\Users\\tandat\\.nuget\\packages\\",
-        "outputPath": "C:\\MonHoc\\AmazingTech_TT_BE\\GitHub\\DemoAPI01\\PhanNguyen_DemoAPI\\obj\\",
+        "outputPath": "C:\\Users\\tandat\\OneDrive\\Desktop\\DemoAPI02\\PhanNguyen_DemoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tandat\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.21, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[6.0.20, )"
@@ -78,6 +82,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[6.1.0, )"
             }
           },
           "imports": [

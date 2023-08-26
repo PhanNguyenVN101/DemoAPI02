@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhanNguyen_DemoAPI.Models;
@@ -6,6 +7,7 @@ using PhanNguyen_DemoAPI.Models.ResponseModels;
 using PhanNguyen_DemoAPI.Repositories;
 using PhanNguyen_DemoAPI.ResponseModels;
 using PhanNguyen_DemoAPI.Services;
+using System.Data;
 
 namespace PhanNguyen_DemoAPI.Controllers
 {
@@ -22,14 +24,14 @@ namespace PhanNguyen_DemoAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("PhanCongs")]
+        [HttpGet("PhanCongs"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetPhanCongs()
         {
             var result = await _PhanCongService.GetAllPhanCongsAsync();
             return Ok(_mapper.Map<List<PhanCongResponse>>(result));
         }
 
-        [HttpPost("PhanCong")]
+        [HttpPost("PhanCong"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreatePhanCong(PhanCongResponse model)
         {
             var result = await _PhanCongService.CreatePhanCongAsync(_mapper.Map<PhanCong>(model));
@@ -37,7 +39,7 @@ namespace PhanNguyen_DemoAPI.Controllers
             return Ok(_mapper.Map<PhanCongResponse>(result));
         }
 
-        [HttpPut("edit/{nhanvienId}&{duanId}")]
+        [HttpPut("edit/{nhanvienId}&{duanId}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePhanCong(string nhanvienId, string duanId, PhanCongResponse model)
         {
             var temp = _mapper.Map<PhanCong>(model);
@@ -46,7 +48,7 @@ namespace PhanNguyen_DemoAPI.Controllers
             var result = await _PhanCongService.UpdatePhanCongAsync(temp);
             return Ok(_mapper.Map<PhanCongResponse>(result));
         }
-        [HttpDelete("delete/{nhanvienId}&{duanId}")]
+        [HttpDelete("delete/{nhanvienId}&{duanId}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePhanCong(string nhanvienId, string duanId)
         {
             var result = await _PhanCongService.DeletePhanCongAsync(nhanvienId,duanId);

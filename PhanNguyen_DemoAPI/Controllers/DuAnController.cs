@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhanNguyen_DemoAPI.Models;
 using PhanNguyen_DemoAPI.Repositories;
 using PhanNguyen_DemoAPI.ResponseModels;
 using PhanNguyen_DemoAPI.Services;
+using System.Data;
 
 namespace PhanNguyen_DemoAPI.Controllers
 {
@@ -21,14 +23,14 @@ namespace PhanNguyen_DemoAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("DuAns")]
+        [HttpGet("DuAns"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetDuAns()
         {
             var result = await _DuAnService.GetAllDuAnsAsync();
             return Ok(_mapper.Map<List<DuAnResponse>>(result));
         }
 
-        [HttpPost("DuAn")]
+        [HttpPost("DuAn"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateDuAn(DuAnResponse model)
         {
             var result = await _DuAnService.CreateDuAnAsync(_mapper.Map<DuAn>(model));
@@ -36,7 +38,7 @@ namespace PhanNguyen_DemoAPI.Controllers
             return Ok(_mapper.Map<DuAnResponse>(result));
         }
 
-        [HttpPut("edit/{keyId}")]
+        [HttpPut("edit/{keyId}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateDuAn(string keyId, DuAnResponse model)
         {
             var temp = _mapper.Map<DuAn>(model);
@@ -44,7 +46,7 @@ namespace PhanNguyen_DemoAPI.Controllers
             var result = await _DuAnService.UpdateDuAnAsync(temp);
             return Ok(_mapper.Map<DuAnResponse>(result));
         }
-        [HttpDelete("delete/{keyId}")]
+        [HttpDelete("delete/{keyId}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteDuAn(string keyId)
         {
             var result = await _DuAnService.DeleteDuAnAsync(keyId);

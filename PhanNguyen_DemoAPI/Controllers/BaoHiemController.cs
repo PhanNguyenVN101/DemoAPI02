@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhanNguyen_DemoAPI.Models;
@@ -10,6 +11,7 @@ namespace PhanNguyen_DemoAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class BaoHiemController : ControllerBase
     {
         private readonly IBaoHiemService _BaoHiemService;
@@ -21,14 +23,14 @@ namespace PhanNguyen_DemoAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("BaoHiems")]
+        [HttpGet("BaoHiems"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetBaoHiems()
         {
             var result = await _BaoHiemService.GetAllBaoHiemsAsync();
             return Ok(_mapper.Map<List<BaoHiemResponse>>(result));
         }
 
-        [HttpPost("BaoHiem")]
+        [HttpPost("BaoHiem"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateBaoHiem(BaoHiemResponse model)
         {
             var result = await _BaoHiemService.CreateBaoHiemAsync(_mapper.Map<BaoHiem>(model));
@@ -36,7 +38,7 @@ namespace PhanNguyen_DemoAPI.Controllers
             return Ok(_mapper.Map<BaoHiemResponse>(result));
         }
 
-        [HttpPut("edit/{keyId}")]
+        [HttpPut("edit/{keyId}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateBaoHiem(string keyId, BaoHiemResponse model)
         {
             var temp = _mapper.Map<BaoHiem>(model);
@@ -44,7 +46,7 @@ namespace PhanNguyen_DemoAPI.Controllers
             var result = await _BaoHiemService.UpdateBaoHiemAsync(temp);
             return Ok(_mapper.Map<BaoHiemResponse>(result));
         }
-        [HttpDelete("delete/{keyId}")]
+        [HttpDelete("delete/{keyId}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteBaoHiem(string keyId)
         {
             var result = await _BaoHiemService.DeleteBaoHiemAsync(keyId);
